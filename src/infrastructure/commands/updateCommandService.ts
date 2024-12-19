@@ -15,7 +15,6 @@ class UpdateCommandService implements updateUser {
         user.genre,
         null,
       ]);
-      console.log("holiii");
       return createResponse(true, "Usuario actualizado con éxito");
     } catch (error) {
       throwError(500, "Internal Server Error", error);
