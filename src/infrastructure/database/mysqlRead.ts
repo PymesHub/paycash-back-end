@@ -1,5 +1,5 @@
-// queryClient.ts - Para manejar solo consultas (Lecturas)
-import mysql from "mysql2";
+// commandClient.ts - Para manejar solo comandos (Escrituras)
+import mysql from "mysql2/promise";
 
 const dbConfig = {
   host: process.env.DB_HOST_READ,
@@ -9,32 +9,6 @@ const dbConfig = {
   port: Number(process.env.DB_PORT_READ),
 };
 
-const connection = mysql.createPool(dbConfig);
+const connectionRead = mysql.createPool(dbConfig);
 
-const getAllRecords = () => {
-  return new Promise<any[]>((resolve, reject) => {
-    connection.execute("SELECT * FROM users", (err, results: any[]) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(results);
-    });
-  });
-};
-
-const getRecordById = (id: number) => {
-  return new Promise<any[]>((resolve, reject) => {
-    connection.execute(
-      "SELECT * FROM users WHERE id = ?",
-      [id],
-      (err, results: any[]) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(results);
-      }
-    );
-  });
-};
-
-export { getAllRecords, getRecordById };
+export { connectionRead };

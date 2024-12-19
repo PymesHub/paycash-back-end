@@ -13,9 +13,6 @@ interface deleteUser {
 }
 
 interface getAllUsers {
-  execute: (
-    page: string,
-    page_size: string
-  ) => Promise<ApiResponse<UserModel[]> | void>;
+  execute: () => Promise<ApiResponse<UserModel[] | any[]> | void>;
 }
 export { createUser, updateUser, deleteUser, getAllUsers };

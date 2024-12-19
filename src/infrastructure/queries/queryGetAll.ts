@@ -1,21 +1,18 @@
-import { getAllUsers } from '../../domain/useCases/userUseCases';
-import { prismaRead } from '../database/prismaClient';
+import { UserModel } from "../../domain/models/user.models";
+import { getAllUsers } from "../../domain/useCases/userUseCases";
+import { createResponse } from "../../utils/responseTemplate";
+import { connectionRead } from "../database/mysqlRead";
 
 class QueryGetAllService implements getAllUsers {
-  async execute(page: string = '1', page_size: string = '10') {
-    const pageNumber = parseInt(page, 10) || 1;
-    const pageSize = parseInt(page_size, 10) || 10;
-    const skip = (pageNumber - 1) * pageSize;
+  async execute() {
     try {
-      const data = await prismaRead.user.findMany({
-        skip,
-        take: pageSize,
-      });
-      return {
-        success: true,
-        data: data,
-        message: "Consulta éxitosa"
-      }
+      const data = await connectionRead.execute("CALL getAllUsers()");
+      console.log(data[0]);
+      return createResponse(
+        true,
+        "usuarios encontrados",
+        data[0][0] as UserModel[]
+      );
     } catch (error) {
       throw error;
     }
