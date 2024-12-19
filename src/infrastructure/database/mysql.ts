@@ -1,5 +1,5 @@
 // commandClient.ts - Para manejar solo comandos (Escrituras)
-import mysql from "mysql2";
+import mysql from "mysql2/promise";
 
 const dbConfig = {
   host: process.env.DB_HOST,
@@ -9,4 +9,6 @@ const dbConfig = {
   port: Number(process.env.DB_PORT),
 };
 
-const connection = mysql.createPool(dbConfig);
+const connectionWrite = mysql.createPool(dbConfig);
+
+export { connectionWrite };

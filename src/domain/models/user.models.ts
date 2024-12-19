@@ -5,7 +5,8 @@ export class UserModel {
     public lastName: string,
     public email: string,
     public birthday: string,
-    public genre: string
+    public genre: string,
+    public statusPLD: string
   ) {}
 }
 export class UserModelUpdate {
