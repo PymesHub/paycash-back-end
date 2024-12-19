@@ -1,0 +1,9 @@
+DELIMITER $$
+
+CREATE PROCEDURE getAllUsers()
+BEGIN
+    SELECT id, name, lastName, email, birthday, genre, statusPLD
+    FROM users;
+END $$
+
+DELIMITER ;

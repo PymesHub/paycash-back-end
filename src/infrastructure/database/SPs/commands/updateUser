@@ -1,0 +1,35 @@
+DELIMITER $$
+
+CREATE PROCEDURE update_user(
+    IN p_id CHAR(36),
+    IN p_name VARCHAR(255),
+    IN p_lastName VARCHAR(255),
+    IN p_email VARCHAR(255),
+    IN p_birthday DATE,
+    IN p_genre VARCHAR(10),
+    IN p_statusPLD VARCHAR(50) -- Sin DEFAULT NULL
+)
+BEGIN
+    -- Si no se pasa un valor para 'statusPLD', lo dejamos como NULL
+    IF p_statusPLD IS NULL THEN
+        UPDATE users
+        SET name = p_name,
+            lastName = p_lastName,
+            email = p_email,
+            birthday = p_birthday,
+            genre = p_genre
+        WHERE id = p_id;
+    ELSE
+        -- Si se pasa un valor para 'statusPLD', lo actualizamos
+        UPDATE users
+        SET name = p_name,
+            lastName = p_lastName,
+            email = p_email,
+            birthday = p_birthday,
+            genre = p_genre,
+            statusPLD = p_statusPLD
+        WHERE id = p_id;
+    END IF;
+END $$
+
+DELIMITER ;

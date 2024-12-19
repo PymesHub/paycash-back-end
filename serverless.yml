@@ -1,0 +1,79 @@
+plugins:
+  - serverless-auto-swagger
+  - serverless-offline-sqs
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+org: pymeshub
+app: interview-api-serverless
+service: interview-api-serverless
+
+useDotenv: true
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    DB_HOST: ${DB_HOST}
+    DB_USER: ${DB_USER}
+    DB_PASSWORD: ${DB_PASSWORD}
+    DB_NAME: ${DB_NAME}
+    DB_PORT: ${DB_PORT}
+    DB_HOST_READ: ${DB_HOST_READ}
+    DB_USER_READ: ${DB_USER_READ}
+    DB_PASSWORD_READ: ${DB_PASSWORD_READ}
+    DB_NAME_READ: ${DB_NAME_READ}
+    DB_PORT_READ: ${DB_PORT_READ}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sqs:SendMessage
+      Resource: !GetAtt SQSQueue.Arn
+    - Effect: Allow
+      Action:
+        - sqs:ReceiveMessage
+        - sqs:DeleteMessage
+        - sqs:GetQueueAttributes
+      Resource: !GetAtt SQSQueue.Arn
+
+resources:
+  Resources:
+    SQSQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        ReceiveMessageWaitTimeSeconds: 10
+        QueueName: interview-queue-buss.fifo
+        FifoQueue: true
+        ContentBasedDeduplication: true
+        DelaySeconds: 0
+        MessageRetentionPeriod: 86400
+        VisibilityTimeout: 6
+functions:
+  createUserLambda:
+    handler: src/lambdas/commandLambdas/createLambda/handler.handler
+    events:
+      - http:
+          path: /api/v1/create-user
+          method: post
+
+  updateUserLambda:
+    handler: src/lambdas/commandLambdas/updateLambda/handler.handler
+    events:
+      - http:
+          path: /api/v1/update-user
+          method: put
+
+  deleteUserLambda:
+    handler: src/lambdas/commandLambdas/deleteLambda/handler.handler
+    events:
+      - http:
+          path: /api/v1/delete-user/{id}
+          method: delete
+
+  queriesGetAllLambda:
+    handler: src/lambdas/queryLambdas/getAllLambda/handler.handler
+    events:
+      - http:
+          path: /api/v1/get-users
+          method: get

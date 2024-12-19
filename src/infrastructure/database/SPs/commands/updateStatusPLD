@@ -1,0 +1,13 @@
+DELIMITER $$
+
+CREATE PROCEDURE actualizar_statusPLD(
+    IN p_id CHAR(36),
+    IN p_statusPLD VARCHAR(50)
+)
+BEGIN
+    UPDATE users
+    SET statusPLD = p_statusPLD
+    WHERE id = p_id;
+END $$
+
+DELIMITER ;

@@ -1,0 +1,17 @@
+DELIMITER $$
+
+CREATE PROCEDURE create_user(
+    IN p_id CHAR(36),
+    IN p_name VARCHAR(255),
+    IN p_lastName VARCHAR(255),
+    IN p_email VARCHAR(255),
+    IN p_birthday DATE,
+    IN p_genre VARCHAR(10),
+    IN p_statusPLD VARCHAR(50)
+)
+BEGIN
+    INSERT INTO users (id, name, lastName, email, birthday, genre, statusPLD) 
+    VALUES (p_id, p_name, p_lastName, p_email, p_birthday, p_genre, p_statusPLD);
+END $$
+
+DELIMITER ;
