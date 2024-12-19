@@ -10,7 +10,6 @@ CREATE PROCEDURE update_user(
     IN p_statusPLD VARCHAR(50) -- Sin DEFAULT NULL
 )
 BEGIN
-    -- Si no se pasa un valor para 'statusPLD', lo dejamos como NULL
     IF p_statusPLD IS NULL THEN
         UPDATE users
         SET name = p_name,
@@ -20,7 +19,6 @@ BEGIN
             genre = p_genre
         WHERE id = p_id;
     ELSE
-        -- Si se pasa un valor para 'statusPLD', lo actualizamos
         UPDATE users
         SET name = p_name,
             lastName = p_lastName,

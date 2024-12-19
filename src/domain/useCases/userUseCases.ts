@@ -5,7 +5,7 @@ interface createUser {
 }
 
 interface updateUser {
-  execute: (user: UserModelUpdate) => Promise<ApiResponse<UserModel> | void>;
+  execute: (user: UserModelUpdate) => Promise<ApiResponse<any> | void>;
 }
 
 interface deleteUser {
