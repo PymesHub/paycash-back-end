@@ -154,7 +154,7 @@
         "genre": {
           "type": "string",
           "description": "User's gender",
-          "enum": ["male", "female", "other"]
+          "enum": ["male", "woman", "no_binary"]
         }
       }
     },
@@ -186,7 +186,7 @@
         "genre": {
           "type": "string",
           "description": "User's gender",
-          "enum": ["male", "female", "other"]
+          "enum": ["male", "woman", "no_binary"]
         }
       }
     },
@@ -215,7 +215,7 @@
         "genre": {
           "type": "string",
           "description": "User's gender",
-          "enum": ["male", "female", "other"]
+          "enum": ["male", "woman", "no_binary"]
         }
       }
     },
@@ -247,7 +247,7 @@
         "genre": {
           "type": "string",
           "description": "User's gender",
-          "enum": ["male", "female", "other"]
+          "enum": ["male", "woman", "no_binary"]
         }
       }
     },
@@ -279,7 +279,7 @@
         "genre": {
           "type": "string",
           "description": "User's gender",
-          "enum": ["male", "female", "other"]
+          "enum": ["male", "woman", "no_binary"]
         }
       }
     }
