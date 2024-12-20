@@ -13,7 +13,6 @@ export const handler: SQSHandler = async (event) => {
       );
       const messageBody = record.body;
       await commandHandler.execute(messageBody);
-      console.log("Message body:", messageBody);
     } catch (error) {
       console.error("Error processing record:", record, error);
     }

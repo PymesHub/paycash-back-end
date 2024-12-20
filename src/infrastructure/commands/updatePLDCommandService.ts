@@ -7,11 +7,13 @@ import { connectionWrite } from "../database/mysql";
 class UpdatePLDCommandService implements updateUser {
   async execute(user: UserModelUpdate) {
     const status = await getRandomPLDStatus();
+    console.log("Este es el status", status);
     try {
       const [result]: any = await connectionWrite.query(
         "CALL actualizar_statusPLD(?,?)",
         [user.id, status]
       );
+      console.log("Este es el result", result);
       if (result?.affectedRows === 0) {
         return throwError(404, "Usuario no encontrado o no actualizado");
       }

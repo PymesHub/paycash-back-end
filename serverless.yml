@@ -18,7 +18,7 @@ custom:
 useDotenv: true
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs22.x
   region: us-east-1
   environment:
     DB_HOST: ${DB_HOST}
@@ -49,7 +49,7 @@ resources:
     SQSQueue:
       Type: AWS::SQS::Queue
       Properties:
-        ReceiveMessageWaitTimeSeconds: 10
+        ReceiveMessageWaitTimeSeconds: 3
         QueueName: interview-queue-buss.fifo
         FifoQueue: true
         ContentBasedDeduplication: true
@@ -90,6 +90,8 @@ functions:
             Fn::GetAtt:
               - SQSQueue
               - Arn
+          batchSize: 3
+          enabled: true
 
   deleteUserLambda:
     handler: src/lambdas/commandLambdas/deleteLambda/handler.handler
