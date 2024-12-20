@@ -10,6 +10,9 @@ export const handler = async () => {
     const data = await queryHandler.execute();
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify(data),
     };
   } catch (error) {

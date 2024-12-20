@@ -5,7 +5,6 @@ import {
   createResponse,
   throwError,
 } from "../../utils/responseTemplate";
-import { logger } from "../../utils/logger";
 import { connectionWrite } from "../database/mysql";
 
 class CreateCommandService implements createUser {
@@ -22,7 +21,6 @@ class CreateCommandService implements createUser {
       ]);
       return createResponse(true, "Usuario creado con éxito");
     } catch (error) {
-      logger.error(error);
       throwError(500, "User creation failed", `error`);
     }
   }

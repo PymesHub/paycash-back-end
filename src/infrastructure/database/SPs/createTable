@@ -3,7 +3,7 @@ CREATE TABLE users (
     name VARCHAR(255),
     lastName VARCHAR(255),
     email VARCHAR(255),
-    birthday DATE,
+    birthday VARCHAR(255),
     genre VARCHAR(10),
     statusPLD VARCHAR(50) NULL
 );

@@ -5,7 +5,7 @@ CREATE PROCEDURE create_user(
     IN p_name VARCHAR(255),
     IN p_lastName VARCHAR(255),
     IN p_email VARCHAR(255),
-    IN p_birthday DATE,
+    IN p_birthday VARCHAR(255),
     IN p_genre VARCHAR(10),
     IN p_statusPLD VARCHAR(50)
 )

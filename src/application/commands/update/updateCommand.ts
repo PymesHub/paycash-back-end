@@ -1,22 +1,18 @@
-import { z } from 'zod';
-import { throwError } from '../../../utils/responseTemplate';
+import { z } from "zod";
+import { throwError } from "../../../utils/responseTemplate";
 
 const UpdateCommandSchema = z.object({
   id: z.string().uuid(),
-  name: z.string().min(1, 'El nombre es obligatorio'),
-  lastName: z.string().min(1, 'El apellido es obligatorio'),
-  email: z.string().email('El correo electrónico no es válido'),
+  name: z.string().min(1, "El nombre es obligatorio"),
+  lastName: z.string().min(1, "El apellido es obligatorio"),
+  email: z.string().email("El correo electrónico no es válido"),
   birthday: z
     .string()
     .refine(
       (date) => !isNaN(Date.parse(date)),
-      'La fecha de nacimiento no es válida'
+      "La fecha de nacimiento no es válida"
     ),
-  genre: z
-    .enum(['male', 'female', 'other'])
-    .refine((value) => ['male', 'female', 'other'].includes(value), {
-      message: 'El género no es válido',
-    }),
+  genre: z.enum(["male", "female", "other"]),
 });
 export class UpdateCommand {
   constructor(
@@ -33,19 +29,19 @@ export class UpdateCommand {
     if (!result.success) {
       throwError(
         400,
-        'Bad request',
+        "Bad request",
         JSON.stringify(result.error.formErrors.fieldErrors)
       );
     }
 
     const parsedData = result.data;
     return new UpdateCommand(
-      parsedData?.id ?? '',
-      parsedData?.name ?? '',
-      parsedData?.lastName ?? '',
-      parsedData?.email ?? '',
-      parsedData?.birthday ?? '',
-      parsedData?.genre ?? ''
+      parsedData?.id ?? "",
+      parsedData?.name ?? "",
+      parsedData?.lastName ?? "",
+      parsedData?.email ?? "",
+      parsedData?.birthday ?? "",
+      parsedData?.genre ?? ""
     );
   }
 }

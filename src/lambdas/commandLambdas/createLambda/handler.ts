@@ -2,8 +2,6 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { CreateCommandHandler } from "../../../application/commands/create/createCommandHandler";
 import { CreateCommandService } from "../../../infrastructure/commands/createCommandService";
 import { createResponse } from "../../../utils/responseTemplate";
-import { logger } from "../../../utils/logger";
-
 export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
@@ -13,6 +11,9 @@ export const handler = async (
     const data = await commandHandler.execute(input ?? "");
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify({
         data,
       }),
@@ -26,7 +27,6 @@ export const handler = async (
         ),
       };
     } else {
-      logger.error(`Unexpected error: ${err?.message}`);
       return {
         statusCode: 500,
         body: JSON.stringify("Server Error"),

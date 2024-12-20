@@ -1,5 +1,5 @@
-import { updateUser } from '../../../domain/useCases/userUseCases';
-import { UpdateCommand } from './updateCommand';
+import { updateUser } from "../../../domain/useCases/userUseCases";
+import { UpdateCommand } from "./updateCommand";
 
 class UpdateCommandHandler {
   constructor(readonly updateService: updateUser) {
