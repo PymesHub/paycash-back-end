@@ -19,12 +19,11 @@ export const handler = async (
       }),
     };
   } catch (err: any) {
+    console.log(err);
     if (err?.statusCode) {
       return {
         statusCode: err.statusCode,
-        body: JSON.stringify(
-          createResponse(false, err.message, err.message, err.details)
-        ),
+        body: JSON.stringify(createResponse(false, err.message, err.details)),
       };
     } else {
       return {

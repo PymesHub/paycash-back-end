@@ -6,15 +6,21 @@ import { connectionWrite } from "../database/mysql";
 class UpdateCommandService implements updateUser {
   async execute(user: UserModelUpdate) {
     try {
-      await connectionWrite.query("CALL update_user(?,?,?,?,?,?,?)", [
-        user.id,
-        user.name,
-        user.lastName,
-        user.email,
-        user.birthday,
-        user.genre,
-        null,
-      ]);
+      const [result]: any = await connectionWrite.query(
+        "CALL update_user(?,?,?,?,?,?,?)",
+        [
+          user.id,
+          user.name,
+          user.lastName,
+          user.email,
+          user.birthday,
+          user.genre,
+          null,
+        ]
+      );
+      if (result?.affectedRows === 0) {
+        return throwError(404, "Usuario no encontrado o no actualizado");
+      }
       return createResponse(true, "Usuario actualizado con éxito");
     } catch (error) {
       throwError(500, "Internal Server Error", error);
