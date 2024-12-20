@@ -23,7 +23,7 @@ export const handler = async (
       return {
         statusCode: err.statusCode,
         body: JSON.stringify(
-          createResponse(false, err.message, undefined, err.details)
+          createResponse(false, err.message, err.message, err.details)
         ),
       };
     } else {

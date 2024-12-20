@@ -8,7 +8,6 @@ export const handler = async (
   try {
     const input = event.body;
     const commandHandler = new UpdateCommandHandler(new UpdateCommandService());
-    console.log("Esta es el input ------------>", input);
     const data = await commandHandler.execute(input ?? "");
     return {
       statusCode: 200,
@@ -24,7 +23,7 @@ export const handler = async (
       return {
         statusCode: err.statusCode,
         body: JSON.stringify(
-          createResponse(false, err.message, undefined, err.details)
+          createResponse(false, err.message, err.message, err.details)
         ),
       };
     } else {
