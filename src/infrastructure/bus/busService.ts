@@ -2,14 +2,12 @@ import { UserModel } from "../../domain/models/user.models";
 import { SQSConnection } from "./sqs/sqsConnection";
 
 class BusService {
-  constructor(readonly event: string) {
-    this.event = event;
-  }
+  constructor() {}
 
   async createBusEvent(userData: UserModel) {
     const sqsUrl = process.env.SQS_URL;
     const sqs = new SQSConnection(sqsUrl ?? "");
-    const message = await sqs.sendMessage(userData, this.event);
+    const message = await sqs.sendMessage(userData);
     return message;
   }
 }

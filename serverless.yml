@@ -60,6 +60,8 @@ resources:
 functions:
   createUserLambda:
     handler: src/lambdas/commandLambdas/createLambda/handler.handler
+    environment:
+      SQS_URL: https://sqs.us-east-1.amazonaws.com/940482416080/interview-queue-buss.fifo
     events:
       - http:
           path: /api/v1/create-user
@@ -79,6 +81,15 @@ functions:
           documentation:
             summary: Update user
             description: Update user
+
+  lambdaBus:
+    handler: src/lambdas/busLambdas/handler.handler
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - SQSQueue
+              - Arn
 
   deleteUserLambda:
     handler: src/lambdas/commandLambdas/deleteLambda/handler.handler
@@ -101,6 +112,7 @@ functions:
           documentation:
             summary: Get all users
             description: Get all users
+
   jsonSchemaLambda:
     handler: src/lambdas/swagger/swagger.handler
     events:

@@ -8,10 +8,10 @@ class SQSConnection {
     this.queueUrl = queueUrl;
   }
 
-  async sendMessage(messageBody: UserModel, event: string) {
+  async sendMessage(messageBody: UserModel) {
     const params: AWS.SQS.SendMessageRequest = {
       QueueUrl: this.queueUrl,
-      MessageBody: JSON.stringify({ ...messageBody, event }),
+      MessageBody: JSON.stringify({ ...messageBody }),
       MessageGroupId: messageBody.id ?? "",
     };
 
