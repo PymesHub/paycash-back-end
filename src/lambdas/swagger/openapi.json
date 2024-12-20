@@ -1,0 +1,287 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Interview API",
+    "description": "API for interview",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/api/v1/create-user": {
+      "post": {
+        "summary": "Create a new user",
+        "description": "Create a new user",
+        "operationId": "createUserLambda",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User created successfully",
+            "schema": {
+              "$ref": "#/definitions/CreateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v1/update-user": {
+      "put": {
+        "summary": "Update user",
+        "description": "Update user",
+        "operationId": "updateUserLambda",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "schema": {
+              "$ref": "#/definitions/UpdateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v1/delete-user/{id}": {
+      "delete": {
+        "summary": "Delete user",
+        "description": "Delete user",
+        "operationId": "deleteUserLambda",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/v1/get-users": {
+      "get": {
+        "summary": "Get all users",
+        "description": "Get all users",
+        "operationId": "queriesGetAllLambda",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "A list of users",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateUserRequest": {
+      "required": ["birthday", "email", "genre", "lastName", "name"],
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User's first name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address",
+          "format": "email"
+        },
+        "birthday": {
+          "type": "string",
+          "description": "User's date of birth",
+          "format": "date"
+        },
+        "genre": {
+          "type": "string",
+          "description": "User's gender",
+          "enum": ["male", "female", "other"]
+        }
+      }
+    },
+    "CreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "User ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "User's first name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address",
+          "format": "email"
+        },
+        "birthday": {
+          "type": "string",
+          "description": "User's date of birth",
+          "format": "date"
+        },
+        "genre": {
+          "type": "string",
+          "description": "User's gender",
+          "enum": ["male", "female", "other"]
+        }
+      }
+    },
+    "UpdateUserRequest": {
+      "required": ["birthday", "email", "genre", "lastName", "name"],
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "User's first name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address",
+          "format": "email"
+        },
+        "birthday": {
+          "type": "string",
+          "description": "User's date of birth",
+          "format": "date"
+        },
+        "genre": {
+          "type": "string",
+          "description": "User's gender",
+          "enum": ["male", "female", "other"]
+        }
+      }
+    },
+    "UpdateUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "User ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "User's first name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address",
+          "format": "email"
+        },
+        "birthday": {
+          "type": "string",
+          "description": "User's date of birth",
+          "format": "date"
+        },
+        "genre": {
+          "type": "string",
+          "description": "User's gender",
+          "enum": ["male", "female", "other"]
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "User ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "User's first name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name"
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address",
+          "format": "email"
+        },
+        "birthday": {
+          "type": "string",
+          "description": "User's date of birth",
+          "format": "date"
+        },
+        "genre": {
+          "type": "string",
+          "description": "User's gender",
+          "enum": ["male", "female", "other"]
+        }
+      }
+    }
+  }
+}

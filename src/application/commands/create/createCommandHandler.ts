@@ -1,5 +1,5 @@
-import { createUser } from '../../../domain/useCases/userUseCases';
-import { CreateCommand } from './createCommand';
+import { createUser } from "../../../domain/useCases/userUseCases";
+import { CreateCommand } from "./createCommand";
 class CreateCommandHandler {
   constructor(readonly createService: createUser) {
     this.createService = createService;

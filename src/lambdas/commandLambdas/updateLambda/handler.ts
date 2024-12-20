@@ -3,7 +3,7 @@ import { UpdateCommandHandler } from "../../../application/commands/update/updat
 import { UpdateCommandService } from "../../../infrastructure/commands/updateCommandService";
 import { createResponse, throwError } from "../../../utils/responseTemplate";
 export const handler = async (
-  event: APIGatewayProxyEvent
+  event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> => {
   try {
     const input = event.body;
@@ -26,7 +26,7 @@ export const handler = async (
       return {
         statusCode: err.statusCode,
         body: JSON.stringify(
-          createResponse(false, err.message, err.message, err.details)
+          createResponse(false, err.message, err.message, err.details),
         ),
       };
     } else {

@@ -16,7 +16,7 @@ export const createResponse = <T>(
   success: boolean,
   message: string,
   data?: T,
-  error?: string
+  error?: string,
 ): ApiResponse<T> => {
   return {
     success,
@@ -29,7 +29,7 @@ export const createResponse = <T>(
 export const throwError = (
   statusCode: number,
   message: string,
-  details?: string
+  details?: string,
 ): never => {
   const error: ApiError = new Error(message) as ApiError;
   error.statusCode = statusCode;

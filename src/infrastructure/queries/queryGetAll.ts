@@ -11,7 +11,7 @@ class QueryGetAllService implements getAllUsers {
       return createResponse(
         true,
         "usuarios encontrados",
-        data[0][0] as UserModel[]
+        data[0][0] as UserModel[],
       );
     } catch (error) {
       throw error;

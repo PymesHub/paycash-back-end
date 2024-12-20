@@ -3,7 +3,7 @@ import { DeleteCommandHandler } from "../../../application/commands/delete/delet
 import { DeleteCommandService } from "../../../infrastructure/commands/deleteCommandService";
 import { createResponse } from "../../../utils/responseTemplate";
 export const handler = async (
-  event: APIGatewayProxyEvent
+  event: APIGatewayProxyEvent,
 ): Promise<APIGatewayProxyResult> => {
   try {
     const id = event?.pathParameters?.id;

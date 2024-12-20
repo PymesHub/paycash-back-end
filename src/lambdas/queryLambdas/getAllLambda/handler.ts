@@ -5,7 +5,7 @@ import { QueryGetAllService } from "../../../infrastructure/queries/queryGetAll"
 export const handler = async () => {
   try {
     const queryHandler = new QueryGetAllCommandHandler(
-      new QueryGetAllService()
+      new QueryGetAllService(),
     );
     const data = await queryHandler.execute();
     return {

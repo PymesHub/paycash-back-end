@@ -1,5 +1,5 @@
-import { deleteUser } from '../../../domain/useCases/userUseCases';
-import { DeleteCommand } from './deleteCommand';
+import { deleteUser } from "../../../domain/useCases/userUseCases";
+import { DeleteCommand } from "./deleteCommand";
 class DeleteCommandHandler {
   constructor(readonly deleteService: deleteUser) {
     this.deleteService = deleteService;

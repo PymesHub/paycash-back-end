@@ -7,8 +7,6 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.4.2",
-    "prisma": "^6.1.0",
-    "serverless-auto-swagger": "^3.0.0",
     "serverless-dotenv-plugin": "^6.0.0",
     "serverless-openapi-documentation": "^0.4.0",
     "typescript": "^5.7.2"
@@ -17,13 +15,16 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
+    "@codegenie/serverless-express": "^4.16.0",
     "@serverless/utils": "^6.15.0",
     "@types/aws-lambda": "^8.10.146",
     "aws-sdk": "^2.1692.0",
+    "express": "^4.21.2",
     "mysql2": "^3.11.5",
     "serverless-http": "^3.2.0",
     "serverless-offline": "^14.4.0",
     "serverless-offline-sqs": "^8.0.0",
+    "swagger-ui-express": "^5.0.1",
     "uuid": "^11.0.3",
     "yamljs": "^0.3.0",
     "zod": "^3.24.1"

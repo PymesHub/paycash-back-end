@@ -101,13 +101,12 @@ functions:
           documentation:
             summary: Get all users
             description: Get all users
-  swagger:
-    handler: swagger.handler
+  jsonSchemaLambda:
+    handler: src/lambdas/swagger/swagger.handler
     events:
       - http:
-          path: /api/v1/swagger
+          path: /api/v1/swagger.json
           method: get
-          cors: true
 
 package:
   include:

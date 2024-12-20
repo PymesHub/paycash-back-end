@@ -1,23 +1,23 @@
-import * as winston from 'winston';
+import * as winston from "winston";
 
 class Logger {
   private logger: winston.Logger;
 
   constructor() {
     this.logger = winston.createLogger({
-      level: 'info',
+      level: "info",
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.timestamp(),
         winston.format.printf(({ timestamp, level, message }) => {
           return `${timestamp} [${level}]: ${message}`;
-        })
+        }),
       ),
       transports: [
-        new winston.transports.Console({ level: 'info' }),
+        new winston.transports.Console({ level: "info" }),
         new winston.transports.File({
-          filename: 'logs/app.log',
-          level: 'info',
+          filename: "logs/app.log",
+          level: "info",
         }),
       ],
     });
@@ -28,19 +28,19 @@ class Logger {
   }
 
   info(message: string): void {
-    this.log('info', message);
+    this.log("info", message);
   }
 
   error(message: string): void {
-    this.log('error', message);
+    this.log("error", message);
   }
 
   warn(message: string): void {
-    this.log('warn', message);
+    this.log("warn", message);
   }
 
   debug(message: string): void {
-    this.log('debug', message);
+    this.log("debug", message);
   }
 }
 

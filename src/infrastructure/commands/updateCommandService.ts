@@ -16,7 +16,7 @@ class UpdateCommandService implements updateUser {
           user.birthday,
           user.genre,
           null,
-        ]
+        ],
       );
       if (result?.affectedRows === 0) {
         return throwError(404, "Usuario no encontrado o no actualizado");

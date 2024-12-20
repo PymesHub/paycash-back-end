@@ -6,7 +6,7 @@ export class UserModel {
     public email: string,
     public birthday: string,
     public genre: string,
-    public statusPLD: string
+    public statusPLD: string,
   ) {}
 }
 export class UserModelUpdate {
@@ -16,6 +16,6 @@ export class UserModelUpdate {
     public lastName: string | null,
     public email: string | null,
     public birthday: string | null,
-    public genre: string | null
+    public genre: string | null,
   ) {}
 }

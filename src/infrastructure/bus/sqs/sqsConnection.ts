@@ -1,5 +1,5 @@
-import AWS from 'aws-sdk';
-import { UserModel } from '../../../domain/models/user.models';
+import AWS from "aws-sdk";
+import { UserModel } from "../../../domain/models/user.models";
 
 class SQSConnection {
   private readonly sqs: AWS.SQS;
@@ -12,14 +12,14 @@ class SQSConnection {
     const params: AWS.SQS.SendMessageRequest = {
       QueueUrl: this.queueUrl,
       MessageBody: JSON.stringify({ ...messageBody, event }),
-      MessageGroupId: messageBody.id ?? '',
+      MessageGroupId: messageBody.id ?? "",
     };
 
     try {
       const messageNotification = await this.sqs.sendMessage(params).promise();
       return messageNotification.MessageId;
     } catch (error) {
-      console.error('Error sending message to SQS:', error);
+      console.error("Error sending message to SQS:", error);
       throw error;
     }
   }

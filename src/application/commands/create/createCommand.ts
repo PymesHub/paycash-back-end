@@ -10,7 +10,7 @@ const CreateCommandSchema = z.object({
     .string()
     .refine(
       (date) => !isNaN(Date.parse(date)),
-      "La fecha de nacimiento no es válida"
+      "La fecha de nacimiento no es válida",
     ),
   genre: z
     .enum(["male", "female", "other"])
@@ -26,7 +26,7 @@ export class CreateCommand {
     public email: string,
     public birthday: string,
     public genre: string,
-    public statusPLD: string
+    public statusPLD: string,
   ) {}
 
   static create(data: string): CreateCommand {
@@ -35,7 +35,7 @@ export class CreateCommand {
       throwError(
         400,
         "Bad Request",
-        JSON.stringify(result.error.formErrors.fieldErrors)
+        JSON.stringify(result.error.formErrors.fieldErrors),
       );
     }
 
@@ -47,7 +47,7 @@ export class CreateCommand {
       parsedData?.email ?? "",
       parsedData?.birthday ?? "",
       parsedData?.genre ?? "",
-      "pending"
+      "pending",
     );
   }
 }
