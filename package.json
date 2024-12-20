@@ -10,6 +10,7 @@
     "prisma": "^6.1.0",
     "serverless-auto-swagger": "^3.0.0",
     "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-openapi-documentation": "^0.4.0",
     "typescript": "^5.7.2"
   },
   "scripts": {
@@ -20,10 +21,11 @@
     "@types/aws-lambda": "^8.10.146",
     "aws-sdk": "^2.1692.0",
     "mysql2": "^3.11.5",
+    "serverless-http": "^3.2.0",
     "serverless-offline": "^14.4.0",
     "serverless-offline-sqs": "^8.0.0",
     "uuid": "^11.0.3",
-    "winston": "^3.17.0",
+    "yamljs": "^0.3.0",
     "zod": "^3.24.1"
   }
 }
